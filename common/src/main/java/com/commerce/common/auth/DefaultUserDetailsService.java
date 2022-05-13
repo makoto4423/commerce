@@ -1,4 +1,4 @@
-package com.commerce.auth.service;
+package com.commerce.common.auth;
 
 import com.commerce.common.entity.CommonUser;
 import com.commerce.common.entity.enums.UserStatusEnum;

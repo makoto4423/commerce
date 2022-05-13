@@ -37,6 +37,10 @@ security:
     resource:
       user-info-uri: http://127.0.0.1:9100/common-user/current
 
+feign:
+  sentinel:
+    enabled: true
+
 logging:
   level:
     com.commerce.customer: warn

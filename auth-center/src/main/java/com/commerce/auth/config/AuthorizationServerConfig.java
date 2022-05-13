@@ -1,6 +1,6 @@
 package com.commerce.auth.config;
 
-import com.commerce.auth.service.DefaultUserDetailsService;
+import com.commerce.common.auth.DefaultUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;

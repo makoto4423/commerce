@@ -1,5 +1,6 @@
 package com.commerce.auth.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.commerce.common.entity.CommonUser;
 import com.commerce.common.entity.enums.UserStatusEnum;
 import com.commerce.common.service.CommonUserService;
@@ -28,6 +29,12 @@ public class CommonUserController {
         commonUser.setPassword(passwordEncoder.encode(commonUser.getPassword()));
         commonUser.setStatus(UserStatusEnum.Normal);
         commonUserService.saveOrUpdate(commonUser);
+    }
+
+    @GetMapping("/test")
+    @SentinelResource(value = "qps")
+    public void test(){
+
     }
 
 }

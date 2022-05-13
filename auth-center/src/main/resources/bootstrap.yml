@@ -1,14 +1,26 @@
-server:
-  port: 9102
-
 spring:
   cloud:
     nacos:
       discovery:
-        # Nacos地址
-        server-addr: http://localhost:8848
+        server-addr: http://10.8.4.190:8848
+        user-name: nacos
+        password: nacos
       config:
-        # Nacos地址
-        server-addr: http://localhost:8848
-        # 这里我们获取的yaml格式的配置
-#        file-extension: yaml
+        server-addr: http://10.8.4.190:8848
+        file-extension: yml
+        shared-configs:
+          - toddle
+    sentinel:
+      transport:
+        dashboard: http://10.8.4.190:8080
+        port: 8719
+      # 懒加载控制，默认值false，此时应用启动在sentinel不会看见服务直到接口被调用
+      eager: false
+      datasource:
+        ds1:
+          nacos:
+            server-addr: http://10.8.4.190:8848
+            data-id: @artifactId@-sentinel
+            rule-type: flow
+  profiles:
+    active: @profiles.active@

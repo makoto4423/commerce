@@ -14,10 +14,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableResourceServer
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
     @Bean
     @Override
@@ -30,12 +26,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.requestMatchers().anyRequest()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/oauth/**").permitAll();
+                .antMatchers("/oauth/**").permitAll()
+                .antMatchers("/common-user").permitAll();
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
-                .antMatchers("/user/password");
+                .antMatchers("/swagger-ui.html")
+                .antMatchers("/v2/**")
+                .antMatchers("/swagger-resources/**")
+                .antMatchers("/webjars/springfox-swagger-ui/**");
     }
 }
