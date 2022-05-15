@@ -1,0 +1,10 @@
+[{
+  "grade": "2",
+  "strategy": 0,
+  "resource": "POST:http://auth-center-service/common-user/current0",
+  "limitApp": "default",
+  "minRequestAmount": 5,
+  "statIntervalMs": 1000,
+  "count": 2,
+  "timeWindow": 2
+}]
