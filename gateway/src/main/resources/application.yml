@@ -1,0 +1,29 @@
+server:
+  port: 9102
+
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    inetutils:
+      timeoutSeconds: 30
+    gateway:
+      enable: true
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: auth-center-service
+          uri: lb://auth-center-service
+          predicates:
+            - Path=/auth-center-service/**
+          filters:
+            - StripPrefix=1
+        - id: customer-service
+          uri: lb://customer-service
+          predicates:
+            - Path=/customer-service/**
+          filters:
+            - StripPrefix=1

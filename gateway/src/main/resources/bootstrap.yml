@@ -1,0 +1,32 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://10.8.4.190:8848
+        user-name: nacos
+        password: nacos
+      config:
+        server-addr: http://10.8.4.190:8848
+        file-extension: yml
+        shared-configs:
+          - toddle
+    sentinel:
+      transport:
+        dashboard: http://10.8.4.190:8080
+        port: 8723
+      eager: true
+      filter:
+        enabled: false
+      datasource:
+        flow:
+          nacos:
+            server-addr: http://10.8.4.190:8848
+            data-id: @artifactId@-sentinel-flow
+            rule-type: flow
+        degrade:
+          nacos:
+            server-addr: http://10.8.4.190:8848
+            data-id: @artifactId@-sentinel-degrade
+            rule-type: degrade
+  profiles:
+    active: @profiles.active@
